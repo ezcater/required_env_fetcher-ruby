@@ -2,6 +2,12 @@
 
 require "required_env_fetcher/version"
 
-# Top-level gem module
 module RequiredEnvFetcher
+  def self.fetch(key, default = nil)
+    if ENV["SKIP_REQUIRED_ENV_VAR_ENFORCEMENT"] == "true"
+      ENV.fetch(key, default || "")
+    else
+      ENV.fetch(key)
+    end
+  end
 end
