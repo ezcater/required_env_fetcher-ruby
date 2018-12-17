@@ -24,7 +24,32 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+When you have an environment variable that is required - perhaps with code like:
+
+```ruby
+# in config/application.rb
+module MyApp
+  class Application < Rails::Application
+    config.x.redis_url = ENV.fetch("REDIS_URL")
+  end
+end
+```
+
+When you run `rails assets:precompile` you'll always need to have a `REDIS_URL` set or else loading
+the application environment will fail. You can update your initializer to do something like:
+
+```ruby
+config.x.redis_url = RequiredEnvFetcher.fetch("REDIS_URL")
+```
+
+Now you can run `SKIP_REQUIRED_ENV_VAR_ENFORCEMENT=true rails assets:precompile` and so long as none of
+your assets rely on the redis URL they will be able to compile.
+
+If you need a specific default value (for example, if the value needs to be a valid URL) you can do:
+
+```ruby
+config.x.redis_url = RequiredEnvFetcher.fetch("REDIS_URL", "http://example.com")
+```
 
 ## Development
 
