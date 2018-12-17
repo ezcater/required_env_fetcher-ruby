@@ -10,8 +10,14 @@ Gem::Specification.new do |spec|
   spec.authors       = ["ezCater, Inc"]
   spec.email         = ["engineering@ezcater.com"]
 
-  spec.summary       = "Allow fetching of required environment variables, providing a default if we're allowing for that"
-  spec.description   = spec.summary
+  spec.summary       = "Allow a default value to be used for a required environment variable"
+  spec.description   = <<~DESC
+    In certain situations it makes sense to allow default values of environment variables that
+    are otherwise required. For example, imagine we're precompiling assets as part of CI when
+    we don't have access to some environment variables we require for the app be up and
+    accepting requests, but aren't required for asset compilation. Using this library we can
+    designate it safe to use default values in those situations.
+  DESC
   spec.homepage      = "https://github.com/ezcater/required_env_fetcher-ruby"
 
   spec.license       = "MIT"
@@ -45,6 +51,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.12"
 
+  spec.add_development_dependency "climate_control"
   spec.add_development_dependency "ezcater_rubocop", "0.58.0"
   spec.add_development_dependency "overcommit"
   spec.add_development_dependency "rake", "~> 10.0"
