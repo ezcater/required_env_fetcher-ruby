@@ -49,7 +49,7 @@ Gem::Specification.new do |spec|
   spec.executables   = []
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.12"
+  spec.add_development_dependency "bundler", "~> 2.3.8"
 
   spec.add_development_dependency "climate_control"
   spec.add_development_dependency "ezcater_rubocop", "0.58.0"
