@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+env:
+  app: required_env_fetcher-ruby
+  branch: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
+
+jobs:
+  lint:
+    name: Lint (Ruby ${{ matrix.ruby }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        # We only care about rubocop against the latest ruby
+        ruby: ['3.2.2']
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3
+
+      - name: Install Ruby ${{ matrix.ruby }}
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler: latest
+          bundler-cache: true
+
+      - name: Run Rubocop
+        run: bundle exec rubocop
+
+  test:
+    name: Test against (${{ matrix.ruby }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        ruby: ['2.7.8', '3.0.6', '3.1.4', '3.2.2']
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3
+
+      - name: Install Ruby ${{ matrix.ruby }}
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler: latest
+          bundler-cache: true
+
+      - name: bundle
+        run: bundle
+
+      - name: rspec
+        run: bundle exec rspec --format RspecJunitFormatter --format progress
