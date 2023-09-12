@@ -30,14 +30,13 @@ Gem::Specification.new do |spec|
     raise "RubyGems 2.0 or newer is required to protect against public gem pushes."
   end
 
-  excluded_files = %w(.circleci/config.yml
+  excluded_files = %w(.github/workflows/ci.yml
                       .github/PULL_REQUEST_TEMPLATE.md
                       .gitignore
                       .rspec
                       .rubocop.yml
                       .ruby-gemset
                       .ruby-version
-                      .travis.yml
                       bin/console
                       bin/setup
                       Rakefile)
@@ -48,11 +47,14 @@ Gem::Specification.new do |spec|
   spec.bindir        = "bin"
   spec.executables   = []
   spec.require_paths = ["lib"]
+  # This is to match inherited settings from ezcater_rubocop which we
+  # should probably update in a separate PR
+  spec.required_ruby_version = ">= 2.6"
 
-  spec.add_development_dependency "bundler", "~> 2.3.8"
+  spec.add_development_dependency "bundler", "~> 2.4.19"
 
   spec.add_development_dependency "climate_control"
-  spec.add_development_dependency "ezcater_rubocop", "0.58.0"
+  spec.add_development_dependency "ezcater_rubocop", "~> 6.0.2"
   spec.add_development_dependency "overcommit"
   spec.add_development_dependency "rake", "~> 13.0.6"
   spec.add_development_dependency "rspec", "~> 3.4"

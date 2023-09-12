@@ -45,7 +45,7 @@ RSpec.describe RequiredEnvFetcher do
         it "raises an error" do
           expect do
             described_class.fetch("SETTING", "a default")
-          end.to raise_error
+          end.to raise_error(KeyError)
         end
       end
     end
