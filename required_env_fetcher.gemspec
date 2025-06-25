@@ -49,9 +49,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   # This is to match inherited settings from ezcater_rubocop which we
   # should probably update in a separate PR
-  spec.required_ruby_version = ">= 2.6"
+  spec.required_ruby_version = ">= 3.2"
 
-  spec.add_development_dependency "bundler", "~> 2.4.19"
+  spec.add_development_dependency "bundler", "~> 2.5.17"
 
   spec.add_development_dependency "climate_control"
   spec.add_development_dependency "ezcater_rubocop", "~> 6.0.2"
