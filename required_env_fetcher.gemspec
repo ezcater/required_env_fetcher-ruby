@@ -54,7 +54,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 2.6.9"
 
   spec.add_development_dependency "climate_control"
-  spec.add_development_dependency "ezcater_rubocop", "~> 6.0.2"
+  spec.add_development_dependency "ezcater_rubocop", "~> 9.0.0"
   spec.add_development_dependency "overcommit"
   spec.add_development_dependency "rake", "~> 13.0.6"
   spec.add_development_dependency "rspec", "~> 3.4"
